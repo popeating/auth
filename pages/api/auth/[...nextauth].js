@@ -8,17 +8,7 @@ const client = new Fauna.Client({
   domain: 'db.eu.fauna.com',
   port: 443,
 });
-// const q = Fauna.query;
-console.log('here', client.query);
-// var createP = client.query(
-//   q.Create(q.Collection('accounts'), { data: { testField: 'testValue' } })
-// );
-// createP.then(function (response) {
-//   console.log(response.ref); // Logs the ref to the console.
-// });
 
-// export default async function auth(req, res) {
-//   return await NextAuth(req, res, {
 export default NextAuth({
   providers: [
     EmailProvider({
@@ -34,6 +24,6 @@ export default NextAuth({
     }),
   ],
 
-  adapter: FaunaAdapter({ faunaClient: client }),
+  adapter: FaunaAdapter(client),
   session: { jwt: true },
 });
